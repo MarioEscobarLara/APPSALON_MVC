@@ -59,4 +59,16 @@ class APIController{
             //echo json_encode(['resultado'=>$resultado]);
         }
     }
+
+    public static function confirmar(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id = $_POST['id'];
+
+            $cita = Cita::find($id);
+            $cita->confirmar();
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+
+            //echo json_encode(['resultado'=>$resultado]);
+        }
+    }
 }

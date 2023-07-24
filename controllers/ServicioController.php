@@ -2,8 +2,10 @@
 
     namespace Controllers;
 
-use Model\Servicio;
 use MVC\Router;
+use Model\Servicio;
+use Intervention\Image\ImageManagerStatic as Image;
+use Model\Usuario;
 
 class ServicioController{
     public static function index(Router $router){
@@ -21,13 +23,38 @@ class ServicioController{
         isAdmin();
         $servicio = new Servicio;
         $alertas = [];
+
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $servicio->sincronizar($_POST);
             $alertas = $servicio->validar();
             // Agrega si todo esta OK
             if(empty($alertas)){
-                $servicio->guardar();
-                header('Location: /servicios');
+                // Crea la carpeta de Inagenes 
+                $files = $_FILES['imagen'];
+
+                if (!empty($files && $files['tmp_name'] !== '')){
+                    if(!is_dir(CARPETA_IMAGENES)){
+                        mkdir(CARPETA_IMAGENES);
+                     }
+                        
+                     $nombreImagen = md5(uniqid(rand(),true)) . '.jpg';
+                        
+                     if($files['tmp_name']){
+                       $servicio->imagen = $nombreImagen;
+                       $image = Image::make($files['tmp_name'])->fit(800,600);    
+                     }
+                     // Guarda Imagen en la Carpeta del SERVER
+                     $image->save(CARPETA_IMAGENES . $nombreImagen);        
+                }else{
+                     Servicio::setAlerta('error','Debe de seleccionar una Imagen del Servicio');
+                     $alertas = Servicio::getAlertas();
+                }
+                
+                if(empty($alertas)){
+                    $servicio->guardar();
+                    header('Location: /servicios');    
+                }
+                
             }
         }
         $router->render('servicios/crear',[
@@ -49,9 +76,25 @@ class ServicioController{
             $servicio->sincronizar($_POST);
             $alertas = $servicio->validar();
             if(empty($alertas)){
+              // Debe de Borrar la Imagen 
+              $files = $_FILES['imagen'];
+              $nombreImagen = md5(uniqid(rand(),true)) . '.jpg';
+              
+              if (!empty($files['tmp_name'])){
+                   // Generar un Nombre Unico 
+                   
+                  $resultado = unlink(CARPETA_IMAGENES . $servicio->imagen);
+                  //debuguear($resultado);  
+                  //debuguear($nombreImagen);
+                  $servicio->setImagen($nombreImagen);    
+                  $image = Image::make($files['tmp_name'])->fit(800,600);
+                  // Guarda Imagen en la Carpeta del SERVER
+                  $image->save(CARPETA_IMAGENES . $nombreImagen);
+                 
+              }
               $servicio->guardar();
+              header('Location: /servicios');
             }
-            header('Location: /servicios');
         }
         $router->render('servicios/actualizar',[
             'nombre' => $_SESSION['nombre'],
@@ -59,12 +102,14 @@ class ServicioController{
             'alertas' => $alertas
         ]);
     }
+
     public static function eliminar(){
         session_start();
         isAdmin();
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $id = $_POST['id'];
             $servicio = Servicio::find($id);
+            $resultado = unlink(CARPETA_IMAGENES . $servicio->imagen);
             $servicio->eliminar();
             header('Location: /servicios');
         }

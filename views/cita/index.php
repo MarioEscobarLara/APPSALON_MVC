@@ -44,8 +44,8 @@
                         type="time" 
                         name="hora" 
                         id="hora"
-                        min="09:00 a.m."
-                        max="20:00 p.m."
+                        min="07:00 a.m."
+                        max="05:00 p.m."
                     />
                 </div>  
                 <input type="hidden" id ="id" value= "<?php echo $id; ?>">    

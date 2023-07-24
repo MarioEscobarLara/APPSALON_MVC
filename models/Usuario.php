@@ -43,6 +43,10 @@ class Usuario extends ActiveRecord{
         }
         if (!$this->telefono){
             self::setAlerta('error',"El teléfono del usuario es requerido");
+        }else{
+             if (strlen($this->telefono) > 10){
+            self::setAlerta('error',"La Longitud del teléfono no debe de ser mayor a 10, verifique !!");
+        }
         }
         if (!$this->password){
             self::setAlerta('error',"El password del usuario es requerido");

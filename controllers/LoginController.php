@@ -8,6 +8,31 @@ use MVC\Router;
     
 
 class LoginController{
+    public static function index(Router $router){
+        $router->render('/auth/index',[
+            'titulo' => 'Estética Krystal'
+        ]);  
+    }
+
+    public static function blog(Router $router){
+        $router->render('/auth/blog',[
+            'titulo'=> 'Blog Estética Krystal'            
+        ]); 
+    }
+    
+    public static function reservar(Router $router){
+       
+        $router->render('/auth/reservar',[
+            'titulo'=> 'Reserva tu Cita'            
+        ]);  
+    }
+    
+    public static function nosotros(Router $router){
+
+        $router->render('/auth/nosotros',[
+            'titulo'=> 'Nosotros'            
+        ]); 
+    }
     public static function login(Router $router){
         $alertas = [];
         
@@ -16,7 +41,7 @@ class LoginController{
             //$auth->sincronizar($_POST);
             // Cubrio el Formulario Login
             $alertas = $auth->validarLogin();
-
+        
             if (empty($alertas)){    
                 // Comprobar si el Usuario Existe
                 $usuario = Usuario::where('email',$auth->email);

@@ -48,10 +48,17 @@
                     if (esUltimo($actual, $proximo)){ 
                 ?>
                     <p class="total">Total: <span>$ <?php echo $total ?></span></p>
-                    <form action="/api/eliminar" method="POST">
-                        <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
-                        <input type="submit" class="boton-eliminar" value="Eliminar Cita">
-                    </form>
+                    <div class="botones">
+                        <form  action="/api/confirmar" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
+                            <input type="submit" class="boton-confirmar" value="Cita Atendida">
+                        </form>
+                        <form class="botones" action="/api/eliminar" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
+                            <input type="submit" class="boton-eliminar" value="Cita Cancelada">
+                        </form>
+                    </div>
+                    
                 <?php };?>
         <?php } ?>
            

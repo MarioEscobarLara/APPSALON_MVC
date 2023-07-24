@@ -6,7 +6,7 @@
     include_once __DIR__ . '/../templates/alertas.php';
 ?>
 
-<form action="/servicios/crear" method="POST" class="formulario" >
+<form action="/servicios/crear" method="POST" class="formulario" enctype="multipart/form-data">
     <?php
         include_once 'formulario.php';
     ?>

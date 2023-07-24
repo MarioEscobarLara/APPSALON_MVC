@@ -12,8 +12,13 @@ use MVC\Router;
 $router = new Router();
 
 // Iniciar Session 
-$router->get('/',[LoginController::class, 'login']);
-$router->post('/',[LoginController::class, 'login']);
+$router->get('/',[LoginController::class, 'index']);
+$router->get('/login',[LoginController::class, 'login']);
+$router->post('/login',[LoginController::class, 'login']);
+$router->get('/nosotros',[LoginController::class, 'nosotros']);
+$router->get('/blog',[LoginController::class, 'blog']);
+$router->get('/reservar',[LoginController::class, 'reservar']);
+
 // Cerrar Session 
 $router->get('/logout',[LoginController::class, 'logout']);
  
@@ -39,6 +44,7 @@ $router->get('/admin',[AdminController::class,'index']);
 $router->get('/api/servicios',[APIController::class,'index']);
 $router->post('/api/citas',[APIController::class,'guardar']);
 $router->post('/api/eliminar',[APIController::class,'eliminar']);
+$router->post('/api/confirmar',[APIController::class,'confirmar']);
 
 // Servicio Controllers ( CRUD de Servicios )
 $router->get('/servicios',[ServicioController::class,'index']);

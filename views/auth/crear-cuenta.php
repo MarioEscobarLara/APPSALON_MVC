@@ -66,3 +66,6 @@
     <a href="/">¿ Ya tienes una cuenta ? Iniciar session</a>
     <a href="/olvide">¿ Olvidaste tu password ?</a>
 </div>
+<?php
+        include_once __DIR__ . '/../templates/footer.php';
+?>

@@ -23,3 +23,6 @@
 <div class="acciones">
     <a href="/">Iniciar session</a>
 </div>
+<?php
+        include_once __DIR__ . '/../templates/footer.php';
+?>

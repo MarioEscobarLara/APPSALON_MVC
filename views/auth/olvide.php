@@ -23,3 +23,6 @@
     <a href="/">¿ Ya tienes una cuenta ? Iniciar session</a>
     <a href="/crear-cuenta">¿ Aún no tienes una cuenta ? Crear una</a>
 </div>
+<?php
+        include_once __DIR__ . '/../templates/footer.php';
+?>

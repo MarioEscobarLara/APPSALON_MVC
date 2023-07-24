@@ -19,19 +19,41 @@ class Router
 
     public function comprobarRutas()
     {
+
+        $url_actual = $_SERVER['PATH_INFO'] ?? '/';
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        if ($method === 'GET') {
+            $fn = $this->getRoutes[$url_actual] ?? null;
+        } else {
+            $fn = $this->postRoutes[$url_actual] ?? null;
+        }
+
+        if ( $fn ) {
+            call_user_func($fn, $this);
+        } else {
+            // Pagina 404
+            header('Location: /404');
+            //echo "Página No Encontrada o Ruta no válida";
+        }
+    }
+
+    public function comprobarRutasttt()
+    {
         
         // Proteger Rutas...
         session_start();
 
         // Arreglo de rutas protegidas...
         // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
-
+        
         // $auth = $_SESSION['login'] ?? null;
 
         //$currentUrl = $_SERVER['PATH_INFO'] ?? '/';
         $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
 
+      
         if ($method === 'GET') {
             $fn = $this->getRoutes[$currentUrl] ?? null;
         } else {
