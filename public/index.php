@@ -53,6 +53,7 @@ $router->post('/servicios/crear',[ServicioController::class,'crear']);
 $router->get('/servicios/actualizar',[ServicioController::class,'actualizar']);
 $router->post('/servicios/actualizar',[ServicioController::class,'actualizar']);
 $router->post('/servicios/eliminar',[ServicioController::class,'eliminar']);
+$router->get('/servicios/consultar',[ServicioController::class,'consultar']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

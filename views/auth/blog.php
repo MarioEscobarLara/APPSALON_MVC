@@ -26,7 +26,6 @@
             <source srcset="build/img/images2.jpeg" type="image/jpeg">
             <img loading="lazy" src="build/img/images.jpg" alt="Imagen Logo">
         </picture>
-
         <div class="texto-entrada">
             <h4>Déjate consentir un poco</h4>
             <p>Servicio desde: <span>20/10/2021</span></p>

@@ -28,3 +28,13 @@
     <?php  }?>
 
 </div>
+<div class="campo">
+    <label for="Promoción">Promoción: </label>
+    <input 
+        class="campo chek" 
+        type="checkbox" 
+        id="promocion" 
+        name="promocion"
+        value =""
+    />
+</div>

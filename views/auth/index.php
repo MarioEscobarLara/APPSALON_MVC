@@ -14,6 +14,7 @@
                 <a href="/login">Iniciar Session</a>
                 <a href="/blog">Blog</a>
                 <a href="/reservar">Reservar Cita</a>
+                <a href="/servicios/consultar">Servicios</a>
             </nav>
         </div>
         <p class="descripcion-pagina">Estilo es Belleza</p>

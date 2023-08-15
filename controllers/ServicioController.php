@@ -8,6 +8,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Model\Usuario;
 
 class ServicioController{
+
     public static function index(Router $router){
         session_start();
         isAdmin();
@@ -73,7 +74,13 @@ class ServicioController{
         $id = $_GET['id'];
         $servicio = Servicio::find($id);
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+           
             $servicio->sincronizar($_POST);
+            if (isset($_POST['promocion'])){
+                $servicio->promocion = '1';
+            }else{
+                $servicio->promocion = '0';
+            }
             $alertas = $servicio->validar();
             if(empty($alertas)){
               // Debe de Borrar la Imagen 
@@ -96,6 +103,7 @@ class ServicioController{
               header('Location: /servicios');
             }
         }
+       
         $router->render('servicios/actualizar',[
             'nombre' => $_SESSION['nombre'],
             'servicio' => $servicio,
@@ -113,6 +121,15 @@ class ServicioController{
             $servicio->eliminar();
             header('Location: /servicios');
         }
+    }
+
+    public static function consultar(Router $router){
+        
+        $servicios = Servicio::all();
+
+        $router->render('servicios/consulta',[
+            'servicios' => $servicios
+        ]);
     }
 
 }
