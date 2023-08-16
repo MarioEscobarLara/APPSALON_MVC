@@ -1,0 +1,6 @@
+host:  nyc.domcloud.id
+u: esteticakrystal
+p: ok3rPTp4Z7K3)P4_-s
+pto: 3306
+db: esteticakrystal_db
+
