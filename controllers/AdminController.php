@@ -16,7 +16,6 @@ class AdminController {
         $fechas = explode('-', $fecha);
         
         if (!checkdate($fechas[1],$fechas[2],$fechas[0])){
-            debuguear($fechas);
             header('Location: /404');
         };
      
@@ -35,7 +34,7 @@ class AdminController {
         $consulta .= " WHERE fecha =  '{$fecha}' AND confirmada = '0'";
        
         $citas = AdminCita::SQL($consulta);
-   
+        debuguear($citas);
         $router->render('admin/index',[
             'nombre' => $_SESSION['nombre'],
             'citas' => $citas,
