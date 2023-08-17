@@ -13,9 +13,7 @@ class AdminController {
         isAdmin();
 
         $fecha = $_GET['fecha'] ?? Date('Y-m-d');
-        
         $fechas = explode('-', $fecha);
-  
         if (!checkdate($fechas[1],$fechas[2],$fechas[0])){
             
             header('Location: /404');

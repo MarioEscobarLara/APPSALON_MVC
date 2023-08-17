@@ -26,16 +26,15 @@ class Email{
         $mail->Port = $_ENV['EMAIL_PORT'];
         $mail->Username = $_ENV['EMAIL_USER'];
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
-
+       
         // Set HTML
         $mail->isHTML(true);
         $mail->CharSet = 'UTF-8';
-
-        $mail->setFrom('cuentas@appsalon.com');
-        $mail->addAddress('cuentas@appsalon.com','appsalon.com.mx');
+        $mail->setFrom('nomadas21@hotmail.com');
+        $mail->addAddress($this->email);
         $mail->Subject = 'Confirmar su Cuenta';
         $contenido = "<HTML>";
-        $contenido .= "<p> <strong>Hola " . $this->nombre . " </strong> Has creado tu cuenta en AppSalon, 
+        $contenido .= "<p> <strong>Hola " . $this->nombre . " </strong> Has creado tu cuenta en Estética Krystal, 
         solo debes confirmarla presionando en el siguiente enlace</p>";
         $contenido .= "<p> Presiona aqui : <a href='" . $_ENV['APP_URL'] . "/confirmar-cuenta?token=" . $this->token . "'>Confirmar cuenta</a> </p>";
         $contenido .= "<p>Si tu no solicitaste éste cambio o ésta cuenta, ignora éste correo.... </p>";
@@ -55,16 +54,15 @@ class Email{
         $mail->Port = $_ENV['EMAIL_PORT'];
         $mail->Username = $_ENV['EMAIL_USER'];
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
-
         // Set HTML
         $mail->isHTML(true);
         $mail->CharSet = 'UTF-8';
 
-        $mail->setFrom('cuentas@appsalon.com');
-        $mail->addAddress('cuentas@appsalon.com','appsalon.com.mx');
+        $mail->setFrom('nomadas21@hotmail.com');
+        $mail->addAddress($this->email);
         $mail->Subject = 'Reestablece tu password';
         $contenido = "<HTML>";
-        $contenido .= "<p> <strong>Hola " . $this->nombre . " </strong> Has solicitado reestablecer tu password en AppSalon, 
+        $contenido .= "<p> <strong>Hola " . $this->nombre . " </strong> Has solicitado reestablecer tu password en Estética Krystal, 
         sigue el siguiente enlace</p>";
         $contenido .= "<p> Presiona aqui : <a href='" . $_ENV['APP_URL'] . "/recuperar?token=" . $this->token . "'>Reestableblecer Password</a> </p>";
         $contenido .= "<p>Si tu no solicitaste éste cambio o ésta cuenta, ignora éste correo.... </p>";
