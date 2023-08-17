@@ -25,14 +25,17 @@ function esUltimo(string $actual, string $proximo):bool{
 
 // Funcion para Protejer el ADMIN de el Proyecto
 function isAdmin() :void{
+
     if (!isset($_SESSION['admin'])){
         header('Location: /');
     }
+
 }
 
 // Funciones que revisan si el Usuario esta Identificado
 
 function isAuth() : void{
+    
     if(!isset($_SESSION['login'])){
         header('Location: /');
     }
