@@ -34,6 +34,7 @@ class AdminController {
         $consulta .= " WHERE fecha =  '{$fecha}' AND confirmada = '0'";
        
         $citas = AdminCita::SQL($consulta);
+       
         debuguear($citas);
         $router->render('admin/index',[
             'nombre' => $_SESSION['nombre'],
