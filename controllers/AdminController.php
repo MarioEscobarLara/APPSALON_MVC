@@ -14,9 +14,9 @@ class AdminController {
 
         $fecha = $_GET['fecha'] ?? Date('Y-m-d');
         $fechas = explode('-', $fecha);
-        debuguear($fechas);
+        
         if (!checkdate($fechas[1],$fechas[2],$fechas[0])){
-            
+            debuguear($fechas);
             header('Location: /404');
         };
      
