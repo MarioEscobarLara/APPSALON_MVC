@@ -4,7 +4,7 @@
 
 class AdminCita extends ActiveRecord{
     // Base de Datos 
-    protected static $tabla = 'citasServicios';
+    protected static $tabla = 'citasservicios';
     protected static $columnasDB = ['id','hora','cliente','email',
             'telefono','servicio','precio'];
     
