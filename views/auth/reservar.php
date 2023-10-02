@@ -9,7 +9,7 @@
             <img src="build/img/call.svg" alt="Icono Call-Center" loading="lazy">
             <h3 class="icono icono-sep">Agendar vía Telefonica</h3>
         </div>
-        <p class="icono-texto">LLamanos (01)55 55 31 48 69</p>
+        <p class="icono-texto">LLamanos 55 55 31 48 69</p>
         <div class="icono">
             <img src="build/img/whats.svg" alt="Icono Whats" loading="lazy">
             <h3 class="icono icono-sep">Agendar por WhatsApp</h3>
